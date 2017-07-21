@@ -1,0 +1,12 @@
+<kb-car-form [edited]="edited" (cancel)="cancel()" (save)="save()" ></kb-car-form>
+
+<div class="row justify-content-around">
+  <div *ngFor="let car of cars">
+    <kb-comopnent-car [car]="car" [isSelected]="car == selected" (selected)="select(car)" ></kb-comopnent-car>
+  </div>
+
+</div>
+
+
+
+

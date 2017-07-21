@@ -1,0 +1,31 @@
+
+<div class="card cars-form-card" *ngIf="edited != null">
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" class="form-control" [(ngModel)]="edited.name">
+  </div>
+  <div class="form-group">
+    <label>Id</label>
+    <input type="text" class="form-control" [(ngModel)]="edited.id">
+  </div>
+  <div class="form-group">
+    <label>Engine:</label>
+    <input type="text" class="form-control" [(ngModel)]="edited.engine" >
+  </div>
+  <div class="form-group">
+    <label>Color:</label>
+    <input type="color" class="form-control" [(ngModel)]="edited.color" >
+  </div>
+  <div class="form-group">
+    <label>Years:</label>
+    <input type="text" class="form-control" [(ngModel)]="edited.years" >
+  </div>
+  <div class="form-group">
+    <label>Type:</label>
+    <input type="text" class="form-control" [(ngModel)]="edited.type" >
+  </div>
+  <div class="form-group">
+    <button class="btn" (click)="onCancel.emit()">Cancel</button>
+    <button class="btn btn-success" (click)="onSave.emit(edited)">Save</button>
+  </div>
+</div>

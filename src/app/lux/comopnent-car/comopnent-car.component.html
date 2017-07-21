@@ -1,0 +1,11 @@
+<div class="list_of_cars" [style.borderBottomColor]="car.category" (click)="select(car)">
+<img class="card-img-top" src="{{car.url}}" alt="Car cover">
+<div class="card-block">
+  <h4 class="card-title" [class.active]="selected == car">{{ car.name }}</h4>
+  <p class="card-text" [ngStyle]="authorsStyle">{{ car.id }}</p>
+  <p class="card-text" [ngStyle]="authorsStyle">{{ car.engine }}</p>
+  <p class="card-text" [ngStyle]="authorsStyle">{{ car.color }}</p>
+  <p class="card-text" [ngStyle]="authorsStyle">{{ car.years }}</p>
+  <p class="card-text" [ngStyle]="authorsStyle">{{ car.type }}</p>
+</div>
+</div>
