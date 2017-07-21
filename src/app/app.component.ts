@@ -1,5 +1,7 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {LuxServiceService} from "./lux/lux-service.service";
+import {Subject} from "rxjs/Subject";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'kb-root',
@@ -7,13 +9,19 @@ import {LuxServiceService} from "./lux/lux-service.service";
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   selected = {};
   edited = null;
+  cars = [];
+
+  private carSubject = new Subject;
 
   constructor(@Inject('LuxServiceService') private luxServiceService: LuxServiceService){
 
+  }
+  ngOnInit(): void {
+    this.refresh()
   }
 
   select(car){
@@ -22,12 +30,9 @@ export class AppComponent {
   }
 
   save() {
-   if (this.edited.id){
-     this.luxServiceService.update(this.edited)
-   } else {
-     this.luxServiceService.save(this.edited)
-   }
-   this.reset()
+   this.luxServiceService.update(this.edited)
+     .subscribe(() => this.refresh())
+    this.reset()
   }
 
   reset() {
@@ -39,9 +44,15 @@ export class AppComponent {
     this.reset()
   }
 
-  get cars() {
-    return this.luxServiceService.getAll();
+  private subscribe(observable: Observable<any>) {
+    observable.subscribe(() => this.refresh())
   }
 
+
+
+  private refresh(){
+    this.luxServiceService.getAll()
+      .subscribe(cars => this.cars = cars)
+  }
 
 }

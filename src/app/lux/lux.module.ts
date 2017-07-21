@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ComopnentCarComponent } from './comopnent-car/comopnent-car.component';
 import { CarFormComponent } from './car-form/car-form.component';
 import {ArrayLuxServiceService} from "./array-lux-service.service";
+import {HttpLuxService} from "./http-lux.service";
 
 
 @NgModule({
@@ -14,7 +15,7 @@ import {ArrayLuxServiceService} from "./array-lux-service.service";
   exports:[ComopnentCarComponent, CarFormComponent],
 
   providers: [
-    {provide: 'LuxServiceService', useClass: ArrayLuxServiceService}
+    {provide: 'LuxServiceService', useClass: HttpLuxService}
   ] ,
 
   declarations: [ComopnentCarComponent, CarFormComponent]
