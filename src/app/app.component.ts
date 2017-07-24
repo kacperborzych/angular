@@ -51,7 +51,7 @@ export class AppComponent implements OnInit{
 
 
   private refresh(){
-    this.luxServiceService.getAll()
+    this.luxServiceService.getAll().do(cars => console.log(cars))
       .subscribe(cars => this.cars = cars)
   }
 
